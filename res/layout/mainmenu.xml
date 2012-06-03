@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	>
+
+    <!--
+	<PreferenceCategory android:title="Notifications">
+	    <Preference android:key="send_notification" android:title="Send Notification"/>   
+	</PreferenceCategory>
+	-->
+
+    <PreferenceCategory android:title="Widgets">
+	    <Preference android:key="update_widget" android:title="Update Widget"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>
+
+
+
