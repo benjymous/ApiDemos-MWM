@@ -3,14 +3,19 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	>
 
-    <!--
 	<PreferenceCategory android:title="Notifications">
-	    <Preference android:key="send_notification" android:title="Send Notification"/>   
+	    <Preference android:key="send_text_notification" android:title="Send Text Notification (LCD/OLED)"/>
+	    <Preference android:key="send_bitmap_notification" android:title="Send Bitmap Notification (LCD)"/>      
 	</PreferenceCategory>
-	-->
 
     <PreferenceCategory android:title="Widgets">
 	    <Preference android:key="update_widget" android:title="Update Widget"/>
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="Vibration">
+	    <Preference android:key="vibrate1" android:title="Three quick"/>
+	    <Preference android:key="vibrate2" android:title="Two slow"/>
+	    <Preference android:key="vibrate3" android:title="Six gappy"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.metawatch.manager.apidemos.ApiDemos;
+import org.metawatch.manager.apidemos.Utils;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -77,7 +78,7 @@ public class IntentReceiver extends BroadcastReceiver  {
 		// This example just loads a pre-made image from the app's assets
 		// folder - in reality you'd want to generate an image here.
 		
-		Bitmap bitmap = loadBitmapFromAssets(context, "image"+currentCount+".bmp");
+		Bitmap bitmap = Utils.loadBitmapFromAssets(context, "image"+currentCount+".bmp");
 
 		Intent intent = createUpdateIntent(bitmap, id_0, desc_0, 1);
 		context.sendBroadcast(intent);
@@ -115,17 +116,6 @@ public class IntentReceiver extends BroadcastReceiver  {
 		intent.putExtras(b);
 
 		return intent;
-	}
-
-	private static Bitmap loadBitmapFromAssets(Context context, String path) {
-		try {
-			InputStream inputStream = context.getAssets().open(path);
-			Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-			inputStream.close();
-			return bitmap;
-		} catch (IOException e) {
-			return null;
-		}
 	}
 
 }
