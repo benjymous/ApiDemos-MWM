@@ -9,7 +9,8 @@
 	</PreferenceCategory>
 
     <PreferenceCategory android:title="Widgets">
-	    <Preference android:key="update_widget" android:title="Update Widget"/>
+	    <Preference android:key="update_widget" android:title="Update Widget"
+	        android:summary="In MWM add the 'MWM ApiDemos Widget' to an idle screen, the press this option to update the widget."/>
     </PreferenceCategory>
     
     <PreferenceCategory android:title="Vibration">
