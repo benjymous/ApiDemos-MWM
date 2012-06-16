@@ -1,7 +1,5 @@
 package org.metawatch.manager.apidemos.widget;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,7 +10,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -25,8 +22,6 @@ public class IntentReceiver extends BroadcastReceiver  {
 	final static String desc_0 = "MWM ApiDemos Widget (24x32)";
 
 	static int currentCount = 1;
-
-	static boolean active = false;
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
@@ -50,8 +45,11 @@ public class IntentReceiver extends BroadcastReceiver  {
 				widgets_desired = new ArrayList<String>(Arrays.asList(bundle.getStringArray("org.metawatch.manager.widgets_desired")));
 			}
 
-			active = (widgets_desired!=null && widgets_desired.contains(id_0));
-
+			// Check if widgets_desired contains each widget ID you're responsible for
+			// and send an update
+			boolean active = (widgets_desired!=null && widgets_desired.contains(id_0));
+			
+			// Always send an update if the broadcast specifies get_previews 
 			if (getPreviews || active) {
 				genWidget(context);
 			}
@@ -80,42 +78,10 @@ public class IntentReceiver extends BroadcastReceiver  {
 		
 		Bitmap bitmap = Utils.loadBitmapFromAssets(context, "image"+currentCount+".bmp");
 
-		Intent intent = createUpdateIntent(bitmap, id_0, desc_0, 1);
+		Intent intent = Utils.createWidgetUpdateIntent(bitmap, id_0, desc_0, 1);
 		context.sendBroadcast(intent);
 
-		//if (active)
-		//	createAlarm(context);
-
 		Log.d(ApiDemos.TAG, "genWidget() end");
-	}
-
-	
-	/**
-	 * @param bitmap Widget image to send
-	 * @param id ID of this widget - should be unique, and sensibly identify
-	 *        the widget
-	 * @param description User friendly widget name (will be displayed in the
-	 * 		  widget picker)
-	 * @param priority A value that indicates how important this widget is, for
-	 * 		  use when deciding which widgets to discard.  Lower values are
-	 *        more likely to be discarded.
-	 * @return Filled-in intent, ready for broadcast.
-	 */
-	private static Intent createUpdateIntent(Bitmap bitmap, String id, String description, int priority) {
-		int pixelArray[] = new int[bitmap.getWidth() * bitmap.getHeight()];
-		bitmap.getPixels(pixelArray, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
-
-		Intent intent = new Intent("org.metawatch.manager.WIDGET_UPDATE");
-		Bundle b = new Bundle();
-		b.putString("id", id);
-		b.putString("desc", description);
-		b.putInt("width", bitmap.getWidth());
-		b.putInt("height", bitmap.getHeight());
-		b.putInt("priority", priority);
-		b.putIntArray("array", pixelArray);
-		intent.putExtras(b);
-
-		return intent;
 	}
 
 }

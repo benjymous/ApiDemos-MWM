@@ -58,10 +58,8 @@ public class ApiDemos extends PreferenceActivity {
 				Bundle b = new Bundle();
 
 				Bitmap bitmap = Utils.loadBitmapFromAssets(context, "Mona.png");				
-				int pixelArray[] = new int[bitmap.getWidth() * bitmap.getHeight()];
-				bitmap.getPixels(pixelArray, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
 
-				b.putIntArray("array", pixelArray);
+				b.putIntArray("array", Utils.makeSendableArray(bitmap));
 				
 				// ommit these if you don't want vibration!
             	b.putInt("vibrate_on", 250);
