@@ -12,6 +12,8 @@ import android.os.Bundle;
 
 public class App {
 	
+	final static String id = "mwmApiDemosApp";
+	
 	static Bitmap bitmap = null;
 	
 	static int currentCount = 1;
@@ -22,6 +24,9 @@ public class App {
 	public static void start(Context context) {
 		if (!running) {
 			Intent intent = new Intent("org.metawatch.manager.APPLICATION_START");
+			Bundle b = new Bundle();
+			b.putString("id", id);
+			intent.putExtras(b);
 			context.sendBroadcast(intent);
 			running = true;
 			update(context);
@@ -50,6 +55,7 @@ public class App {
 			
 			Intent intent = new Intent("org.metawatch.manager.APPLICATION_UPDATE");
 			Bundle b = new Bundle();
+			b.putString("id", id);
 			b.putIntArray("array", Utils.makeSendableArray(bitmap));
 			intent.putExtras(b);
 	
@@ -60,6 +66,9 @@ public class App {
 	public static void stop(Context context) {
 		if (running) {
 			Intent intent = new Intent("org.metawatch.manager.APPLICATION_STOP");
+			Bundle b = new Bundle();
+			b.putString("id", id);
+			intent.putExtras(b);
 			context.sendBroadcast(intent);
 			running = false;
 			bitmap = null;
