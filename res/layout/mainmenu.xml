@@ -13,6 +13,12 @@
 	        android:summary="In MWM add the 'MWM ApiDemos Widget' to an idle screen, the press this option to update the widget."/>
     </PreferenceCategory>
     
+    <PreferenceCategory android:title="Apps">
+        <Preference android:key="app_start" android:title="Start app"/>
+        <Preference android:key="app_update" android:title="Update app"/>
+        <Preference android:key="app_stop" android:title="Stop app" />
+    </PreferenceCategory>
+    
     <PreferenceCategory android:title="Vibration">
 	    <Preference android:key="vibrate1" android:title="Three quick"/>
 	    <Preference android:key="vibrate2" android:title="Two slow"/>

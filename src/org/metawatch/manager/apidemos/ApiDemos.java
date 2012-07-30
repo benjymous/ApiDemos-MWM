@@ -1,6 +1,7 @@
 package org.metawatch.manager.apidemos;
 
 import org.metawatch.manager.apidemos.R;
+import org.metawatch.manager.apidemos.app.App;
 import org.metawatch.manager.apidemos.widget.IntentReceiver;
 
 import android.content.Context;
@@ -82,6 +83,26 @@ public class ApiDemos extends PreferenceActivity {
 		});
 		
 		
+		preferenceScreen.findPreference("app_start").setOnPreferenceClickListener(new OnPreferenceClickListener() {	
+			public boolean onPreferenceClick(Preference arg0) {
+				App.start(context);
+		    	return true;
+			}
+		});
+		
+		preferenceScreen.findPreference("app_update").setOnPreferenceClickListener(new OnPreferenceClickListener() {	
+			public boolean onPreferenceClick(Preference arg0) {
+				App.update(context);
+		    	return true;
+			}
+		});
+		
+		preferenceScreen.findPreference("app_stop").setOnPreferenceClickListener(new OnPreferenceClickListener() {	
+			public boolean onPreferenceClick(Preference arg0) {
+				App.stop(context);
+		    	return true;
+			}
+		});
 		
 		preferenceScreen.findPreference("vibrate1").setOnPreferenceClickListener(new OnPreferenceClickListener() {	
 			public boolean onPreferenceClick(Preference arg0) {
