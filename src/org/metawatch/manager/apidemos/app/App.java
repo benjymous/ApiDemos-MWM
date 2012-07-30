@@ -8,29 +8,28 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.os.Bundle;
 
 public class App {
 	
 	final static String id = "mwmApiDemosApp";
+	final static String name = "Api Demo Example";
 	
 	static Bitmap bitmap = null;
 	
 	static int currentCount = 1;
-	static boolean running = false;
 	
 	static Random rnd = new Random();
 
 	public static void start(Context context) {
-		if (!running) {
-			Intent intent = new Intent("org.metawatch.manager.APPLICATION_START");
-			Bundle b = new Bundle();
-			b.putString("id", id);
-			intent.putExtras(b);
-			context.sendBroadcast(intent);
-			running = true;
-			update(context);
-		}
+		Intent intent = new Intent("org.metawatch.manager.APPLICATION_START");
+		Bundle b = new Bundle();
+		b.putString("id", id);
+		b.putString("name", name);
+		intent.putExtras(b);
+		context.sendBroadcast(intent);
+		update(context);
 	}
 	
 	private static void refreshApp(Context context) {
@@ -39,6 +38,7 @@ public class App {
 		}
 		
 		Canvas c = new Canvas(bitmap);
+		c.drawColor(Color.WHITE);
 		
 		Bitmap icon = Utils.loadBitmapFromAssets(context, "image"+currentCount+".bmp");
 		
@@ -50,28 +50,23 @@ public class App {
 	}
 	
 	public static void update(Context context) {
-		if (running) {
-			refreshApp(context);
-			
-			Intent intent = new Intent("org.metawatch.manager.APPLICATION_UPDATE");
-			Bundle b = new Bundle();
-			b.putString("id", id);
-			b.putIntArray("array", Utils.makeSendableArray(bitmap));
-			intent.putExtras(b);
-	
-			context.sendBroadcast(intent);
-		}
+		refreshApp(context);
+		
+		Intent intent = new Intent("org.metawatch.manager.APPLICATION_UPDATE");
+		Bundle b = new Bundle();
+		b.putString("id", id);
+		b.putIntArray("array", Utils.makeSendableArray(bitmap));
+		intent.putExtras(b);
+
+		context.sendBroadcast(intent);
 	}
 	
 	public static void stop(Context context) {
-		if (running) {
-			Intent intent = new Intent("org.metawatch.manager.APPLICATION_STOP");
-			Bundle b = new Bundle();
-			b.putString("id", id);
-			intent.putExtras(b);
-			context.sendBroadcast(intent);
-			running = false;
-			bitmap = null;
-		}
+		Intent intent = new Intent("org.metawatch.manager.APPLICATION_STOP");
+		Bundle b = new Bundle();
+		b.putString("id", id);
+		intent.putExtras(b);
+		context.sendBroadcast(intent);
+		bitmap = null;
 	}
 }
