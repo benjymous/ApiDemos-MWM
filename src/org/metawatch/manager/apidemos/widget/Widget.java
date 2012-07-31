@@ -6,14 +6,13 @@ import java.util.Arrays;
 import org.metawatch.manager.apidemos.ApiDemos;
 import org.metawatch.manager.apidemos.Utils;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 
-public class IntentReceiver extends BroadcastReceiver  {
+public class Widget {
 
 	// These are the example widget IDs used by this application - you should
 	// change them to suit your app.  
@@ -23,36 +22,28 @@ public class IntentReceiver extends BroadcastReceiver  {
 
 	static int currentCount = 1;
 
-	@Override
-	public void onReceive(Context context, Intent intent) {
-		Log.d(ApiDemos.TAG, "onReceive()");
+	public static void refreshWidgets(Context context, Intent intent) {
 
-		String action = intent.getAction();
-		if (action !=null && action.equals("org.metawatch.manager.REFRESH_WIDGET_REQUEST")) {
+		Bundle bundle = intent.getExtras();
 
-			Log.d(ApiDemos.TAG, "Received intent");
+		boolean getPreviews = bundle.containsKey("org.metawatch.manager.get_previews");
+		if (getPreviews)
+			Log.d(ApiDemos.TAG, "get_previews");
 
-			Bundle bundle = intent.getExtras();
+		ArrayList<String> widgets_desired = null;
 
-			boolean getPreviews = bundle.containsKey("org.metawatch.manager.get_previews");
-			if (getPreviews)
-				Log.d(ApiDemos.TAG, "get_previews");
+		if (bundle.containsKey("org.metawatch.manager.widgets_desired")) {
+			Log.d(ApiDemos.TAG, "widgets_desired");
+			widgets_desired = new ArrayList<String>(Arrays.asList(bundle.getStringArray("org.metawatch.manager.widgets_desired")));
+		}
 
-			ArrayList<String> widgets_desired = null;
-
-			if (bundle.containsKey("org.metawatch.manager.widgets_desired")) {
-				Log.d(ApiDemos.TAG, "widgets_desired");
-				widgets_desired = new ArrayList<String>(Arrays.asList(bundle.getStringArray("org.metawatch.manager.widgets_desired")));
-			}
-
-			// Check if widgets_desired contains each widget ID you're responsible for
-			// and send an update
-			boolean active = (widgets_desired!=null && widgets_desired.contains(id_0));
-			
-			// Always send an update if the broadcast specifies get_previews 
-			if (getPreviews || active) {
-				genWidget(context);
-			}
+		// Check if widgets_desired contains each widget ID you're responsible for
+		// and send an update
+		boolean active = (widgets_desired!=null && widgets_desired.contains(id_0));
+		
+		// Always send an update if the broadcast specifies get_previews 
+		if (getPreviews || active) {
+			genWidget(context);
 		}
 
 	}

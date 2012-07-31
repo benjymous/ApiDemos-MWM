@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         
-        <receiver android:name="org.metawatch.manager.apidemos.widget.IntentReceiver" >
+        <receiver android:name="org.metawatch.manager.apidemos.IntentReceiver" >
             <intent-filter >
                 <action android:name="org.metawatch.manager.REFRESH_WIDGET_REQUEST" />
             </intent-filter>

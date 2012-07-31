@@ -2,7 +2,7 @@ package org.metawatch.manager.apidemos;
 
 import org.metawatch.manager.apidemos.R;
 import org.metawatch.manager.apidemos.app.App;
-import org.metawatch.manager.apidemos.widget.IntentReceiver;
+import org.metawatch.manager.apidemos.widget.Widget;
 
 import android.content.Context;
 import android.content.Intent;
@@ -40,7 +40,7 @@ public class ApiDemos extends PreferenceActivity {
 				b.putString("title", "Title");
 				b.putString("text", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 
-				// ommit these if you don't want vibration!
+				// omit these if you don't want vibration!
             	b.putInt("vibrate_on", 500);
             	b.putInt("vibrate_off", 500);
             	b.putInt("vibrate_cycles", 3);
@@ -62,7 +62,7 @@ public class ApiDemos extends PreferenceActivity {
 
 				b.putIntArray("array", Utils.makeSendableArray(bitmap));
 				
-				// ommit these if you don't want vibration!
+				// omit these if you don't want vibration!
             	b.putInt("vibrate_on", 250);
             	b.putInt("vibrate_off", 500);
             	b.putInt("vibrate_cycles", 2);
@@ -77,7 +77,7 @@ public class ApiDemos extends PreferenceActivity {
 		
 		preferenceScreen.findPreference("update_widget").setOnPreferenceClickListener(new OnPreferenceClickListener() {	
 			public boolean onPreferenceClick(Preference arg0) {
-				IntentReceiver.update(context);
+				Widget.update(context);
 		    	return true;
 			}
 		});
