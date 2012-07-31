@@ -22,6 +22,15 @@ public class App {
 	
 	static Random rnd = new Random();
 
+	public static void announce(Context context) {
+		Intent intent = new Intent("org.metawatch.manager.APPLICATION_ANNOUNCE");
+		Bundle b = new Bundle();
+		b.putString("id", id);
+		b.putString("name", name);
+		intent.putExtras(b);
+		context.sendBroadcast(intent);
+	}
+	
 	public static void start(Context context) {
 		Intent intent = new Intent("org.metawatch.manager.APPLICATION_START");
 		Bundle b = new Bundle();
