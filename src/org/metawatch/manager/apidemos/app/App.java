@@ -2,6 +2,7 @@ package org.metawatch.manager.apidemos.app;
 
 import java.util.Random;
 
+import org.metawatch.manager.apidemos.ApiDemos;
 import org.metawatch.manager.apidemos.Utils;
 
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 
 public class App {
 	
@@ -29,6 +31,7 @@ public class App {
 		b.putString("name", name);
 		intent.putExtras(b);
 		context.sendBroadcast(intent);
+		Log.d(ApiDemos.TAG, "Sent APPLICATION_ANNOUNCE");
 	}
 	
 	public static void start(Context context) {
