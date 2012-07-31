@@ -31,6 +31,13 @@ public class IntentReceiver extends BroadcastReceiver  {
 			Log.d(ApiDemos.TAG, "Received APPLICATION_ACTIVATE intent");
 
 			App.update(context);
+		} else if (action.equals("org.metawatch.manager.BUTTON_PRESS")) {
+			Log.d(ApiDemos.TAG, "Received BUTTON_PRESS intent");
+			
+			int button = intent.getIntExtra("button", 0); // button index
+			int type = intent.getIntExtra("type", 0); // type: 0=pressed, 1=held short, 1=held long
+			
+			App.button(context, button, type);
 		}
 
 	}

@@ -78,4 +78,10 @@ public class App {
 		context.sendBroadcast(intent);
 		bitmap = null;
 	}
+	
+	public static void button(Context context, int button, int type) {
+		
+		currentCount = button;
+		update(context);
+	}
 }
