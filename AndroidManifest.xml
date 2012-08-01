@@ -24,6 +24,7 @@
                 <action android:name="org.metawatch.manager.REFRESH_WIDGET_REQUEST" />
                 <action android:name="org.metawatch.manager.APPLICATION_DISCOVERY" />
                 <action android:name="org.metawatch.manager.APPLICATION_ACTIVATE" />
+                <action android:name="org.metawatch.manager.APPLICATION_DEACTIVATE" />
                 <action android:name="org.metawatch.manager.BUTTON_PRESS" />
             </intent-filter>
         </receiver>

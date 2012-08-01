@@ -2,6 +2,7 @@ package org.metawatch.manager.apidemos;
 
 import org.metawatch.manager.apidemos.R;
 import org.metawatch.manager.apidemos.app.App;
+import org.metawatch.manager.apidemos.app.Life;
 import org.metawatch.manager.apidemos.widget.Widget;
 
 import android.content.Context;
@@ -24,6 +25,9 @@ public class ApiDemos extends PreferenceActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		context = this;
+		
+		App.announce(context);
+		Life.announce(context);
 		
 		addPreferencesFromResource(R.layout.mainmenu);
 		preferenceScreen = getPreferenceScreen();

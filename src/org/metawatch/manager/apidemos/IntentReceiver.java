@@ -1,6 +1,7 @@
 package org.metawatch.manager.apidemos;
 
 import org.metawatch.manager.apidemos.app.App;
+import org.metawatch.manager.apidemos.app.Life;
 import org.metawatch.manager.apidemos.widget.Widget;
 
 import android.content.BroadcastReceiver;
@@ -27,20 +28,35 @@ public class IntentReceiver extends BroadcastReceiver  {
 			Log.d(ApiDemos.TAG, "Received APPLICATION_DISCOVERY intent");
 
 			App.announce(context);
+			Life.announce(context);
+
 		} else if (action.equals("org.metawatch.manager.APPLICATION_ACTIVATE")) {
 			Log.d(ApiDemos.TAG, "Received APPLICATION_ACTIVATE intent");
 
-			App.update(context);
+			String id = intent.getStringExtra("id");
+			
+			if (id!=null && id.equals(App.id))
+				App.update(context);
+			else if (id!=null && id.equals(Life.id))
+				Life.startUpdate(context);
+			
+		} else if (action.equals("org.metawatch.manager.APPLICATION_DEACTIVATE")) {
+			Log.d(ApiDemos.TAG, "Received APPLICATION_DEACTIVATE intent");
+
+			String id = intent.getStringExtra("id");
+			
+			if (id!=null && id.equals(Life.id))
+				Life.stopUpdate();
+			
 		} else if (action.equals("org.metawatch.manager.BUTTON_PRESS")) {
 			Log.d(ApiDemos.TAG, "Received BUTTON_PRESS intent");
 			
+			String id = intent.getStringExtra("id");
 			int button = intent.getIntExtra("button", 0); // button index
 			int type = intent.getIntExtra("type", 0); // type: 0=pressed, 1=held short, 1=held long
 			
-			App.button(context, button, type);
+			if (id!=null && id.equals(App.id))
+				App.button(context, button, type);
 		}
-
 	}
-	
-
 }
