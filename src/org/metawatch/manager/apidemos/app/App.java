@@ -15,7 +15,7 @@ import android.util.Log;
 
 public class App {
 	
-	final public static String id = "mwmApiDemosApp";
+	final public static String id = "org.metawatch.manager.apidemos.App";
 	final static String name = "Api Demo Example";
 	
 	static Bitmap bitmap = null;

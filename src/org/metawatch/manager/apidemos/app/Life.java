@@ -10,12 +10,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.util.Log;
 
 public class Life {
 	
-	final public static String id = "mwmApiDemosLife";
+	final public static String id = "org.metawatch.manager.apidemos.Life";
 	final static String name = "Game of Life";
 	
 	static Bitmap bitmap = null;
